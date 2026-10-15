@@ -32,7 +32,7 @@ The build creates `dist/`, including separate static entry files for Download, P
 
 The deployment workflow in `.github/workflows/deploy.yml` builds and deploys every push to `main`. Repository Settings → Pages → Source must be **GitHub Actions**.
 
-Expected website address: https://eMErsOnW3.github.io/IDIA-OFFCIAL-WEB/
+Expected website address: https://jjzhang0.github.io/IDIA_OFFICIAL_WEBSITE/
 
 `IDIA_BASE_PATH` sets the production repository path. Local development defaults to `/`. BrowserRouter uses the same base. Future custom-domain deployments can set the base to `/`.
 
