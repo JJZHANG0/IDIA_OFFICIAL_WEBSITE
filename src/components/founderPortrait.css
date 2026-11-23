@@ -1,0 +1,39 @@
+.founder-card .founder-portrait {
+  position: relative;
+  padding: 0;
+  perspective: 1000px;
+  container-type: inline-size;
+  background: transparent;
+}
+.portrait-turn, .portrait-front, .portrait-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+.portrait-turn {
+  transform-style: preserve-3d;
+  transition: transform 580ms ease-in-out;
+}
+.founder-portrait[aria-pressed="true"] .portrait-turn,
+.portrait-back { transform: rotateY(180deg); }
+.portrait-front, .portrait-back { backface-visibility: hidden; }
+.portrait-front { object-fit: cover; object-position: center 30%; }
+.portrait-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(9px, 7cqi, 24px);
+  background: var(--idia-soft);
+  color: var(--idia-navy);
+  text-align: left;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+  font-size: clamp(.73rem, 5.4cqi, 1rem);
+}
+.portrait-back strong { font-size: 1.3em; }
+.portrait-back strong + span { color: var(--idia-secondary); margin-bottom: .55em; }
+@media (prefers-reduced-motion: reduce) {
+  .portrait-turn { transition: none; }
+}
