@@ -201,19 +201,25 @@ mark { border-radius: 3px; padding: 2px 3px; box-decoration-break: clone; -webki
 .page-intro .eyebrow { justify-content: center; margin-bottom: 20px; }
 .page-intro h1 { font-size: clamp(2.8rem, 4.3vw, 3.7rem); margin-bottom: 18px; }
 .page-intro > p { font-size: 1.05rem; max-width: 620px; margin-inline: auto; }
-.platforms { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 22px; align-items: stretch; }
-.platform-card { padding: 33px; border-radius: var(--radius); border: 1px solid var(--border); }
-.chrome-card { border-color: #c9cbe2; background: #fafafe; box-shadow: 0 10px 40px #13316f06; }
+.platforms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 13px 22px; }
+.platform-card {
+  display: grid;
+  grid-row: span 6;
+  grid-template-rows: subgrid;
+  min-width: 0;
+  padding: 33px;
+  border: 1px solid var(--focus-border);
+  border-radius: var(--radius);
+  background: #fff;
+}
 .platform-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.platform-icon { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 12px; background: #eeeefa; color: var(--idia-primary); margin-bottom: 24px; }
-.availability { color: #6267a0; display: flex; align-items: center; gap: 4px; font-size: .7rem; padding: 5px 8px; background: #eeeefa; border-radius: 4px; margin-bottom: 24px; }
-.platform-card h2 { font-size: 1.4rem; letter-spacing: -.025em; margin-bottom: 13px; }
-.platform-card p { font-size: .88rem; }
-.version { display: flex; flex-wrap: wrap; gap: 8px; font-size: .7rem; color: #788097; margin-block: 26px 17px; }
-.chrome-card .button { width: 100%; }
-.chrome-card .download-placeholder { font-size: .66rem; text-align: center; margin-block: 11px 0; color: #858398; }
-.upcoming-platform { background: #fff; padding-top: 34px; }
-.upcoming-platform .platform-icon { background: #f5f5f8; color: #959aac; }
+.platform-icon { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 12px; background: #eeeefa; color: var(--idia-primary); }
+.availability { color: #6267a0; display: flex; align-items: center; gap: 4px; font-size: .7rem; padding: 5px 8px; background: #eeeefa; border-radius: 4px; }
+.platform-card h2 { font-size: 1.4rem; letter-spacing: -.025em; margin: 0; }
+.platform-description { font-size: .88rem; margin: 0; }
+.platform-card .version { display: flex; flex-wrap: wrap; align-content: end; gap: 8px; font-size: .7rem; color: #788097; padding-top: 9px; }
+.platform-card .button { width: 100%; text-align: center; }
+.platform-release { font-size: .66rem; text-align: center; margin: 0; color: #858398; }
 .coming-soon { display: inline-block; font-size: .78rem; color: #7f8498; padding: 8px 14px; border: 1px solid var(--border); background: #fafafd; border-radius: 5px; margin-top: 28px; }
 .action-notice { padding: 12px; font-size: .78rem !important; line-height: 1.6; border: 1px solid #e6d7e8; border-radius: 6px; color: #755570; background: var(--idia-soft); margin-top: 14px; margin-bottom: 0; }
 .install-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 38px 35px; }
@@ -282,9 +288,8 @@ code { font-size: .9em; color: #625e94; background: #f1f0f7; border-radius: 3px;
   .download-cta { padding: 36px; gap: 20px; }
   .download-cta h2 { font-size: 1.65rem; }
   .platform-card, .pricing-card { padding: 25px; }
-  .platforms { grid-template-columns: 1fr 1fr 1.2fr; gap: 16px; }
+  .platforms { column-gap: 16px; }
   .pricing-grid { gap: 16px; }
-  .platform-top { flex-wrap: wrap; }
   .availability { font-size: .65rem; }
   .about-why { gap: 55px; }
 }
@@ -305,11 +310,8 @@ code { font-size: .9em; color: #625e94; background: #f1f0f7; border-radius: 3px;
   .download-cta { flex-wrap: wrap; }
   .cta-icon { display: none; }
   .download-cta h2 { font-size: 1.6rem; }
-  .platforms { grid-template-columns: 1fr 1fr; }
-  .chrome-card { grid-column: span 2; }
-  .chrome-card .button { width: auto; min-width: 250px; }
-  .chrome-card .download-placeholder { text-align: left; }
-  .platform-card p br { display: none; }
+  .platforms { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; row-gap: 16px; max-width: 580px; }
+  .platform-card { grid-row: auto; grid-template-rows: auto auto 1fr auto auto minmax(2.1em, auto); gap: 13px; }
   .install-grid { grid-template-columns: 1fr 1fr; }
   .pricing-grid { grid-template-columns: 1fr; max-width: 580px; }
   .pricing-card { padding: 30px; }
@@ -360,17 +362,6 @@ code { font-size: .9em; color: #625e94; background: #f1f0f7; border-radius: 3px;
   .page-intro .eyebrow { font-size: .62rem; }
   .page-intro h1 { font-size: 2.6rem; }
   .page-intro > p { font-size: .95rem; }
-  .platforms { grid-template-columns: 1fr; gap: 16px; }
-  .chrome-card { grid-column: auto; }
-  .chrome-card .button { width: 100%; min-width: 0; }
-  .upcoming-platform { display: grid; grid-template-columns: 48px 1fr; gap: 0 17px; align-items: start; padding: 25px; }
-  .upcoming-platform .platform-icon { grid-column: 1; grid-row: 1 / 4; width: 48px; height: 48px; margin: 0; }
-  .upcoming-platform h2 { grid-column: 2; font-size: 1.25rem; }
-  .upcoming-platform p { grid-column: 2; font-size: .8rem; }
-  .upcoming-platform .coming-soon { grid-column: 2; justify-self: start; margin-top: 0; font-size: .7rem; padding: 6px 10px; }
-  .windows-release { grid-column: 2; min-width: 0; }
-  .windows-release .version { margin-top: 0; }
-  .windows-release .button { text-align: center; }
   .install-grid { grid-template-columns: 1fr; gap: 22px; }
   .install-grid li { padding-top: 20px; gap: 18px; }
   .install-grid li svg { margin-bottom: 10px; }
@@ -687,10 +678,6 @@ body { background: radial-gradient(ellipse at 50% 22%, #fff 35%, #f5f6fa 100%); 
 @media (max-width: 1100px) { .file-trial > .section-heading { gap: 20px; } }
 @media (max-width: 850px) { .file-trial > .section-heading { grid-template-columns: 1fr; gap: 18px; } }
 
-/* Available desktop release follows the existing download-card rhythm. */
-.available-platform { background: #fff; border-color: var(--focus-border); }
-.available-platform .button { width: 100%; }
-.available-platform .download-placeholder { font-size: .66rem; text-align: center; margin-block: 11px 0; color: #858398; }
 .terms-page .privacy-toc { border-color: var(--focus-border); box-shadow: var(--focus-shadow); }
 
 /* Editorial rhythm: open informational layouts and distinct functional surfaces. */
