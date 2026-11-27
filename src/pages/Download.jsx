@@ -1,15 +1,14 @@
-import { Chrome, Monitor, Command, Download as DownloadIcon, Check, Package, FolderOpen, Settings2, ToggleRight, FolderInput, ShieldCheck } from 'lucide-react';
+import { Chrome, Monitor, Command, Download as DownloadIcon, Check, ExternalLink, Puzzle } from 'lucide-react';
 import Button from '../components/Button';
 import Reveal from '../components/Reveal';
 import { productConfig } from '../config';
 
+const chromeStoreUrl = 'https://chromewebstore.google.com/detail/idia-privacy-protector/inohmebnmknmipjaapeofbnclkapfich';
+
 const instructions = [
-  [Package, 'Download the extension package.', 'Save the IDIA ZIP package to your computer.'],
-  [FolderOpen, 'Extract the ZIP file.', 'Keep the extracted folder somewhere easy to find.'],
-  [Settings2, 'Open Chrome Extensions.', <>In Chrome, enter <code>chrome://extensions</code> in the address bar.</>],
-  [ToggleRight, 'Enable Developer Mode.', 'Turn on Developer mode in the top-right corner.'],
-  [FolderInput, 'Click Load unpacked.', 'Choose the Load unpacked button on the extensions page.'],
-  [ShieldCheck, 'Select the IDIA extension folder.', 'Select the extracted folder containing manifest.json.'],
+  [Chrome, 'Open IDIA Privacy Protector on the Chrome Web Store.'],
+  [Check, 'Click “Add to Chrome” and confirm the installation.'],
+  [Puzzle, "Open the IDIA extension from your browser's toolbar to get started."],
 ];
 
 const platforms = [
@@ -40,16 +39,13 @@ const platforms = [
     description: 'Privacy protection, right where your AI conversations begin.',
     version: 'Version ' + productConfig.extensionVersion,
     target: 'Chrome browser',
-    href: productConfig.extensionDownloadUrl,
-    filename: 'IDIA-BrowserExtension.zip',
-    buttonLabel: 'Download Extension',
-    release: 'IDIA Chrome v' + productConfig.extensionVersion + ' · ZIP download · Manual installation',
+    storeLabel: 'Available on Chrome Web Store.',
   },
 ];
 
 export default function Download() {
   return <div className="page-enter"><section className="container page-intro"><div className="eyebrow">YOUR NEXT STEP, MORE PRIVATE.</div><h1>Download IDIA</h1><p>Add a privacy layer between your data and generative AI.</p></section><section className="container platforms" aria-label="Download platforms">
-      {platforms.map(({ name, Icon, description, version, target, href, filename, buttonLabel, release }) => (
+      {platforms.map(({ name, Icon, description, version, target, href, filename, buttonLabel, release, storeLabel }) => (
         <article className="platform-card" key={name}>
           <div className="platform-top">
             <span className="platform-icon"><Icon size={29} /></span>
@@ -58,9 +54,41 @@ export default function Download() {
           <h2>{name}</h2>
           <p className="platform-description">{description}</p>
           <div className="version">{version}<span aria-hidden="true">·</span>{target}</div>
-          <Button href={href} download={filename}><DownloadIcon size={17} />{buttonLabel}</Button>
-          <p className="platform-release">{release}</p>
+          {storeLabel ? (
+            <p className="platform-release platform-store-label">{storeLabel}</p>
+          ) : (
+            <>
+              <Button href={href} download={filename}><DownloadIcon size={17} />{buttonLabel}</Button>
+              <p className="platform-release">{release}</p>
+            </>
+          )}
         </article>
       ))}
-    </section><section className="section container install-section"><Reveal><div className="section-heading"><div><div className="eyebrow">UP AND RUNNING</div><h2>How to Install IDIA</h2></div><p>A few simple steps to add the<br />unpacked extension to Chrome.</p></div><ol className="install-grid">{instructions.map(([Icon, title, copy], index) => <li key={title}><span className="install-number">0{index + 1}</span><div><Icon size={21} /><h3>{title}</h3><p>{copy}</p></div></li>)}</ol><div className="installation-note"><Chrome size={19} /><p>Chrome Web Store distribution may be added later. Until then, installation uses Chrome’s Developer Mode.</p></div></Reveal></section></div>;
+    </section>
+    <section className="section container install-section" aria-labelledby="chrome-install-title">
+      <Reveal>
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow">UP AND RUNNING</div>
+            <h2 id="chrome-install-title">Get IDIA on Chrome Web Store</h2>
+          </div>
+          <p>Install IDIA directly from the Chrome Web Store. No ZIP downloads or Developer Mode required.</p>
+        </div>
+        <ol className="install-grid">
+          {instructions.map(([Icon, instruction], index) => (
+            <li key={instruction}>
+              <span className="install-number" aria-hidden="true">0{index + 1}</span>
+              <div>
+                <Icon size={21} aria-hidden="true" />
+                <p>{instruction}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <Button className="chrome-store-button" href={chromeStoreUrl} target="_blank" rel="noopener noreferrer">
+          <ExternalLink size={17} aria-hidden="true" />View on Chrome Web Store
+        </Button>
+      </Reveal>
+    </section>
+  </div>;
 }

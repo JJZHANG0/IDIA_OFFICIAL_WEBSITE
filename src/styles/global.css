@@ -220,6 +220,8 @@ mark { border-radius: 3px; padding: 2px 3px; box-decoration-break: clone; -webki
 .platform-card .version { display: flex; flex-wrap: wrap; align-content: end; gap: 8px; font-size: .7rem; color: #788097; padding-top: 9px; }
 .platform-card .button { width: 100%; text-align: center; }
 .platform-release { font-size: .66rem; text-align: center; margin: 0; color: #858398; }
+.platform-store-label { grid-row: 5 / span 2; align-self: center; font-size: .8rem; color: var(--muted); }
+.chrome-store-button { margin-top: 28px; text-align: center; }
 .coming-soon { display: inline-block; font-size: .78rem; color: #7f8498; padding: 8px 14px; border: 1px solid var(--border); background: #fafafd; border-radius: 5px; margin-top: 28px; }
 .action-notice { padding: 12px; font-size: .78rem !important; line-height: 1.6; border: 1px solid #e6d7e8; border-radius: 6px; color: #755570; background: var(--idia-soft); margin-top: 14px; margin-bottom: 0; }
 .install-grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 38px 35px; }
